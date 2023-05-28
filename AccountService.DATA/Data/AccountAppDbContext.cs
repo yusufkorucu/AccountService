@@ -18,5 +18,6 @@ namespace AccountService.Data.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<UserAddress> UserAddress { get; set; }
     }
 }

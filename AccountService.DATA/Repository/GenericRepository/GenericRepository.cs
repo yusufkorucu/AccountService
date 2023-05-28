@@ -43,7 +43,7 @@ namespace AccountService.Data.Repository.GenericRepository
             throw new NotImplementedException();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(long id)
         {
             return await this.entity.FirstOrDefaultAsync(x => x.Id == id);
         }

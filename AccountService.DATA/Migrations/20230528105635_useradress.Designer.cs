@@ -4,6 +4,7 @@ using AccountService.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccountService.Data.Migrations
 {
     [DbContext(typeof(AccountAppDbContext))]
-    partial class AccountAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230528105635_useradress")]
+    partial class useradress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,12 +57,15 @@ namespace AccountService.Data.Migrations
                     b.Property<string>("Town")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("UserId1")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("UserAddress");
                 });
@@ -98,17 +104,10 @@ namespace AccountService.Data.Migrations
             modelBuilder.Entity("AccountService.Data.Models.Base.UserAddress", b =>
                 {
                     b.HasOne("AccountService.Data.Models.User", "User")
-                        .WithMany("UserAddresses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("AccountService.Data.Models.User", b =>
-                {
-                    b.Navigation("UserAddresses");
                 });
 #pragma warning restore 612, 618
         }

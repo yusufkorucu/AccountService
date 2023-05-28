@@ -11,6 +11,8 @@ namespace AccountService.Domain.Mapper
         {
             CreateMap<Data.Models.User, UserAddCommand>().ReverseMap();
             CreateMap<Data.Models.User, UserLoginResponseDto>().ReverseMap();
+            CreateMap<Data.Models.UserAddress, UserAddressAddCommand>().ReverseMap();
+            CreateMap<Data.Models.UserAddress, UserAddressDto>().ReverseMap();
 
         }
     }

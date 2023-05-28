@@ -6,7 +6,7 @@ namespace AccountService.Data.Repository.GenericRepository
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         Task<List<TEntity>> GetListAsync();
-        Task<TEntity> GetByIdAsync(int id);
+        Task<TEntity> GetByIdAsync(long id);
         Task AddAsync(TEntity entity);
         void Update(TEntity entity);
         Task DeleteAsync(int id);

@@ -14,13 +14,11 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-        //builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-        //builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
         builder.Services.AddApplicationServices();
         builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         builder.Services.AddDbContext<AccountAppDbContext>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IUserAddressRepository, UserAddressRepository>();
 
         builder.Services.AddControllers();
         builder.Services.AddScoped<IUserService, UserService>();
